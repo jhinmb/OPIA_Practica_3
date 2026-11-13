@@ -87,6 +87,11 @@ DEFAULTS = {
 
 
 def find_missing(payload: dict) -> list[str]:
+    return [
+        name
+        for name in FEATURE_NAMES
+        if name not in payload or payload[name] is None
+    ]
     """Devuelve las variables de FEATURE_NAMES que faltan en `payload`.
 
     TODO 2 (apartado b): una variable falta si su clave no está en el
