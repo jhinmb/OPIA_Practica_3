@@ -103,6 +103,8 @@ def find_missing(payload: dict) -> list[str]:
 
 
 def format_price(med_house_val: float) -> str:
+    price = med_house_val * 100_000
+    return f"${price:,.0f}"
     """Convierte la salida del modelo a un texto legible en dólares.
 
     TODO 3 (apartado c): la variable objetivo está en cientos de miles de
@@ -196,7 +198,7 @@ if st.button("Estimar precio"):
             med_house_val = response.json()["MedHouseVal"]
             # Valor SIN formatear (cientos de miles de $), para poder probar la
             # app antes de hacer el apartado c.
-            st.metric("Valor devuelto por la API (sin formatear)", med_house_val)
+            st.metric("Precio estimado", format_price(med_house_val))
             # TODO 4 (apartados c y d): muestra el precio ya formateado.
             # Pista: sustituye la línea st.metric de arriba por
             # st.metric("Precio estimado", format_price(med_house_val))
